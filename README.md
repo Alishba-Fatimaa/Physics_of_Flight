@@ -1,12 +1,16 @@
 # The Physics of Flight 
+[Live Demo](https://physics-of-flight.netlify.app)
 
-An interactive website exploring the science behind flight, developed using core frontend technologies. Inspired by my interest in aerodynamics and aeronautics, this project combines visual storytelling with interactive web elements to make complex concepts more engaging and accessible.
+An interactive website exploring the science behind flight, developed using core frontend technologies.A blend of my interest in aerodynamics and frontend development, translating the science of flight into an interactive digital experience.
 
 ## Overview
 
 The website presents the fundamental principles of flight through structured content, custom SVG illustrations, and interactive simulations.
+It explores Bernoulli's theorem, Newton's Third Law, the four forces of flight, and common misconceptions about aerodynamics.
 
-It explores Bernoulli's theorem, Newton's Third Law, the four forces of flight, and common misconceptions about aerodynamics. 
+## Live Demo
+
+Explore the live website: **[The Physics of Flight](https://physics-of-flight.netlify.app)**
 
 ## Features
 
