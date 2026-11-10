@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Physics of Flight</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Reusable airliner drawing (defined once, used in hero, forces and footer) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="bodyG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#ffffff"/><stop offset=".35" stop-color="#eef2f7"/>
+        <stop offset=".72" stop-color="#c3ccd9"/><stop offset="1" stop-color="#8795a8"/>
+      </linearGradient>
+      <linearGradient id="finG" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#0a2347"/><stop offset="1" stop-color="#1f5099"/>
+      </linearGradient>
+      <linearGradient id="wingG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#e2e8f0"/><stop offset="1" stop-color="#76869c"/>
+      </linearGradient>
+      <linearGradient id="engG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f4f6fa"/><stop offset="1" stop-color="#8f9db0"/>
+      </linearGradient>
+    </defs>
+    <symbol id="airliner" viewBox="0 0 640 200">
+      <polygon points="70,100 36,126 92,128 134,104" fill="#a3b0c1"/>
+      <path d="M72 76 L40 8 L90 8 L142 74Z" fill="url(#finG)"/>
+      <polygon points="53,36 112,36 120,46 58,46" fill="#f5a524"/>
+      <polygon points="395,130 305,130 200,188 240,190" fill="url(#wingG)"/>
+      <polygon points="204,186 196,166 210,168 226,189" fill="#cfd8e3"/>
+      <line x1="395" y1="130" x2="240" y2="190" stroke="#fff" stroke-opacity=".6" stroke-width="2"/>
+      <path d="M36 94 C60 74 100 68 150 68 L490 68 C555 68 605 86 626 106 C606 124 556 140 490 140 L150 140 C100 140 62 128 36 102Z" fill="url(#bodyG)"/>
+      <path d="M180 68V140M300 68V140M420 68V140" stroke="#000" stroke-opacity=".07"/>
+      <path d="M150 74H500" stroke="#fff" stroke-width="3" stroke-opacity=".7"/>
+      <path d="M60 116 C200 114 420 114 598 120" stroke="#f5a524" stroke-width="3" fill="none"/>
+      <line x1="168" y1="92" x2="478" y2="92" stroke="#25364d" stroke-width="7" stroke-linecap="round" stroke-dasharray="8 12"/>
+      <path d="M556 84 C575 86 594 94 604 102 L560 100Z" fill="#1c2a3d"/>
+      <rect x="506" y="82" width="14" height="30" rx="3" fill="none" stroke="#9aa7b8"/>
+      <polygon points="288,162 326,162 322,174 292,174" fill="#7f8ea3"/>
+      <rect x="270" y="172" width="62" height="26" rx="13" fill="url(#engG)"/>
+      <line x1="300" y1="174" x2="300" y2="196" stroke="#9aa7b8"/>
+      <ellipse cx="331" cy="185" rx="6" ry="12.5" fill="#1c2a3d" stroke="#c3ccd9"/>
+    </symbol>
+  </svg>
+
+  <!-- ========== HERO ========== -->
+  <section id="hero">
+    <div class="streak s1"></div><div class="streak s2"></div><div class="streak s3"></div>
+    <p class="eyebrow">Aerodynamics explained</p>
+    <h1>The Physics of Flight</h1>
+    <p class="hook">Ever wondered how this enormous machine stays in the air?</p>
+    <p class="subtitle">How a 70-tonne aircraft is held up by air: pressure, velocity and four balanced forces.</p>
+    <svg class="hero-plane" viewBox="0 0 640 200" role="img" aria-label="Passenger airliner"><use href="#airliner"/></svg>
+    <a href="#bernoulli" class="scroll-hint">Begin &darr;</a>
+  </section>
+
+  <!-- ========== BERNOULLI ========== -->
+  <section id="bernoulli" class="light">
+    <p class="eyebrow"></p>
+    <h2>Bernoulli’s Theorem</h2>
+
+    <div class="card theorem">
+      <p>For a steady, smooth flow of air along a streamline, <strong>an increase in the speed of the air comes with a decrease in its pressure</strong>.</p>
+      <p class="formula">P + ½ρv² + ρgh = constant</p>
+      <ul class="terms">
+        <li><b>P</b> static pressure: the pressure the air exerts on a surface</li>
+        <li><b>½ρv²</b> dynamic pressure from the air’s motion (ρ = air density, v = speed)</li>
+        <li><b>ρgh</b> height term, negligible across the thickness of a wing</li>
+      </ul>
+      <p>Because the total stays constant, if <b>v</b> rises then <b>P</b> must fall. Air moving faster over the top of a wing therefore has lower pressure than the slower air underneath. The theorem assumes steady, incompressible, frictionless flow, which is a good approximation for an airliner’s wing at everyday speeds.</p>
+    </div>
+
+    <div class="panel">
+      <svg class="wing-diagram" viewBox="0 0 800 360" role="img" aria-label="Air flowing over and under a wing">
+        <path class="airflow airflow-top"    d="M0 105 C220 105 270 90 400 92 C540 94 620 105 800 105" />
+        <path class="airflow airflow-top"    d="M0 75 C220 75 270 62 400 64 C540 66 620 75 800 75" />
+        <path class="airflow airflow-top"    d="M0 45 C220 45 270 36 400 38 C540 40 620 45 800 45" />
+        <path class="airflow airflow-bottom" d="M0 250 C250 250 400 245 800 250" />
+        <path class="airflow airflow-bottom" d="M0 280 C250 280 400 277 800 280" />
+        <path class="airflow airflow-bottom" d="M0 310 C250 310 400 308 800 310" />
+        <path class="wing" d="M200 190 C250 120 450 130 600 195 C450 205 300 215 200 190 Z" />
+        <text class="label label-low"  x="400" y="20">Fast air · LOW pressure</text>
+        <text class="label label-high" x="400" y="345">Slow air · HIGH pressure</text>
+        <line class="lift-arrow" x1="400" y1="165" x2="400" y2="125" />
+      </svg>
+
+      <div id="stallAlert" class="stall-alert" hidden>
+        <strong>Stall.</strong> The airflow has separated from the top surface, so lift collapses and drag rises. Lowering the nose reduces the angle and recovers the flow.
+      </div>
+
+      <div class="control-panel">
+        <label for="angle">Angle of attack: <output id="angleValue">5</output>&deg;</label>
+        <input type="range" id="angle" min="0" max="20" value="5">
+        <p>Lift: <strong id="liftValue">Medium</strong> <span class="hint">(critical angle is about 15°)</span></p>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <article class="card">
+        <h3>Angle of attack</h3>
+        <p>The angle between the wing’s <em>chord line</em> (an imaginary line from its leading edge to its trailing edge) and the direction of the oncoming air. Increasing it makes the wing deflect more air downward and speeds up the flow over the top, so the pressure difference and the lift grow. Drag grows as well.</p>
+      </article>
+      <article class="card">
+        <h3>What the green arrow shows</h3>
+        <p><strong>Lift</strong> is the net upward force on the wing. It is the sum of the pressure differences over the whole wing surface: lower pressure above and higher pressure below. It acts roughly perpendicular to the oncoming air.</p>
+      </article>
+      <article class="card">
+        <h3>Stall</h3>
+        <p>Beyond the <em>critical angle</em> (about 15° for many wings) the air can no longer follow the top surface and breaks away into turbulence. The low-pressure region collapses, lift drops sharply and drag climbs. Drag the slider past 15° to see it happen.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ========== FOUR FORCES ========== -->
+  <section id="forces" class="dark">
+    <p class="eyebrow"> Equilibrium</p>
+    <h2>The Four Forces</h2>
+    <p class="lead">In steady, level flight the forces balance: lift equals weight, and thrust equals drag.</p>
+
+    <div class="plane-stage">
+      <svg viewBox="0 0 760 460" role="img" aria-label="Airliner with the four forces drawn where they act">
+        <use href="#airliner" x="80" y="110" width="640" height="200"/>
+        <g class="f lift"><line x1="380" y1="262" x2="380" y2="82"/><polygon points="380,62 372,84 388,84"/></g>
+        <g class="f weight"><line x1="330" y1="214" x2="330" y2="394"/><polygon points="330,414 322,392 338,392"/><circle cx="330" cy="214" r="7"/></g>
+        <g class="f thrust"><line x1="424" y1="295" x2="588" y2="295"/><polygon points="608,295 586,287 586,303"/></g>
+        <g class="f drag"><line x1="128" y1="215" x2="52" y2="215"/><polygon points="30,215 52,207 52,223"/></g>
+      </svg>
+
+      <div class="fbox lift-box"><h3>Lift</h3><p>Acts on the <b>wings</b>. Produced by the pressure difference between the upper and lower surfaces. Opposes weight.</p></div>
+      <div class="fbox weight-box"><h3>Weight</h3><p>Acts at the <b>centre of gravity</b>. Gravity pulling the whole aircraft toward the Earth.</p></div>
+      <div class="fbox thrust-box"><h3>Thrust</h3><p>Acts at the <b>engines</b>. Pushes the aircraft forward by accelerating air backward. Opposes drag.</p></div>
+      <div class="fbox drag-box"><h3>Drag</h3><p>Acts <b>against the motion</b>. Air resistance over the fuselage and wings.</p></div>
+    </div>
+  </section>
+
+  <!-- ========== NEWTON ========== -->
+  <section id="newton" class="white">
+    <p class="eyebrow"> Another view of lift</p>
+    <h2>Newton’s Third Law</h2>
+    <p class="lead">The tilted wing pushes air downward. The air pushes back on the wing with an equal and opposite force, upward. Bernoulli and Newton are two descriptions of the same lift: the pressure difference <em>is</em> how the wing transfers that push to the aircraft.</p>
+  </section>
+
+  <!-- ========== MYTHS ========== -->
+  <section id="myth" class="light">
+    <p class="eyebrow"> Common misconceptions</p>
+    <h2>Myth Buster</h2>
+    <p class="lead"></p>
+
+    <div class="myth-grid">
+      <div class="flip-card" tabindex="0" role="button">
+        <div class="flip-inner">
+          <div class="flip-front"><span class="tag">Myth</span><p>Air over the top must travel farther, so it speeds up to meet the air from below at the trailing edge.</p></div>
+          <div class="flip-back"><span class="tag">Truth</span><p>There is no rule that the two airflows must meet. In experiments the air over the top arrives <em>first</em>. The wing’s shape and angle speed up the flow, not an “equal transit time”.</p></div>
+        </div>
+      </div>
+      <div class="flip-card" tabindex="0" role="button">
+        <div class="flip-inner">
+          <div class="flip-front"><span class="tag">Myth</span><p>Only a curved wing can create lift, so a flat wing cannot fly.</p></div>
+          <div class="flip-back"><span class="tag">Truth</span><p>A flat paper plane flies thanks to its angle of attack. Curvature (camber) makes a wing more efficient, and aerobatic planes with symmetric wings can even fly upside down.</p></div>
+        </div>
+      </div>
+      <div class="flip-card" tabindex="0" role="button">
+        <div class="flip-inner">
+          <div class="flip-front"><span class="tag">Myth</span><p>The engines push the plane up into the sky.</p></div>
+          <div class="flip-back"><span class="tag">Truth</span><p>Engines provide thrust, which pushes the plane forward. The wings turn that forward speed into lift. Gliders have no engine at all and still stay up.</p></div>
+        </div>
+      </div>
+      <div class="flip-card" tabindex="0" role="button">
+        <div class="flip-inner">
+          <div class="flip-front"><span class="tag">Myth</span><p>Bernoulli and Newton give competing explanations of lift, and only one is right.</p></div>
+          <div class="flip-back"><span class="tag">Truth</span><p>Both are correct. They describe the same physics: the wing turns air downward (Newton), which creates the pressure difference that Bernoulli relates to speed.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER (runway) ========== -->
+  <footer>
+    <p class="foot-text">© 2026 &middot; Designed &amp; built by <strong>Alishba Fatima </strong> </p>
+    <p class="foot-links">
+      <a href="https://www.linkedin.com/in/alishba-fatima0509/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/Alishba-Fatimaa" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:alishbafatima371@gmail.com">Email</a>
+    </p>
+    <div class="runway" aria-hidden="true">
+      <svg class="rw-plane" viewBox="0 0 640 200"><use href="#airliner"/></svg>
+      <div class="rw-ground">
+        <span class="rw-num"></span>
+        <div class="rw-line"></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
